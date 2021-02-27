@@ -9,12 +9,12 @@ public class validarCpf {
 		return isCPF(cpf);
 	}
 
-	public static boolean isCPF(String CPF) {
+	public static boolean isCPF(String cpf) {
 		// considera-se erro CPF's formados por uma sequencia de numeros iguais
-		if (CPF.equals("00000000000") || CPF.equals("11111111111") || CPF.equals("22222222222")
-				|| CPF.equals("33333333333") || CPF.equals("44444444444") || CPF.equals("55555555555")
-				|| CPF.equals("66666666666") || CPF.equals("77777777777") || CPF.equals("88888888888")
-				|| CPF.equals("99999999999") || (CPF.length() != 11))
+		if (cpf.equals("00000000000") || cpf.equals("11111111111") || cpf.equals("22222222222")
+				|| cpf.equals("33333333333") || cpf.equals("44444444444") || cpf.equals("55555555555")
+				|| cpf.equals("66666666666") || cpf.equals("77777777777") || cpf.equals("88888888888")
+				|| cpf.equals("99999999999") || (cpf.length() != 11))
 			return (false);
 
 		char dig10, dig11;
@@ -29,7 +29,7 @@ public class validarCpf {
 				// converte o i-esimo caractere do CPF em um numero:
 				// por exemplo, transforma o caractere '0' no inteiro 0
 				// (48 eh a posicao de '0' na tabela ASCII)
-				num = (int) (CPF.charAt(i) - 48);
+				num = (int) (cpf.charAt(i) - 48);
 				sm = sm + (num * peso);
 				peso = peso - 1;
 			}
@@ -44,7 +44,7 @@ public class validarCpf {
 			sm = 0;
 			peso = 11;
 			for (i = 0; i < 10; i++) {
-				num = (int) (CPF.charAt(i) - 48);
+				num = (int) (cpf.charAt(i) - 48);
 				sm = sm + (num * peso);
 				peso = peso - 1;
 			}
@@ -56,7 +56,7 @@ public class validarCpf {
 				dig11 = (char) (r + 48);
 
 			// Verifica se os digitos calculados conferem com os digitos informados.
-			if ((dig10 == CPF.charAt(9)) && (dig11 == CPF.charAt(10)))
+			if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10)))
 				return (true);
 			else
 				return (false);
@@ -65,23 +65,23 @@ public class validarCpf {
 		}
 	}
 
-	public static String imprimeCPF(String CPF) {
-		return (CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." + CPF.substring(6, 9) + "-"
-				+ CPF.substring(9, 11));
+	public static String imprimeCPF(String cpf) {
+		return (cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-"
+				+ cpf.substring(9, 11));
 	}
 
 	public static void main(String[] args) {
 		Scanner teclado = new Scanner(System.in);
 
-		String CPF;
+		String cpf;
 
 		System.out.printf("Informe um CPF sem pontos: ");
-		CPF = teclado.next();
+		cpf = teclado.next();
 
 		System.out.printf("\nResultado: ");
 		// usando os metodos isCPF() e imprimeCPF() da classe "ValidaCPF"
-		if (validarCpf.isCPF(CPF) == true)
-			System.out.printf("%s\n", validarCpf.imprimeCPF(CPF));
+		if (validarCpf.isCPF(cpf) == true)
+			System.out.printf("%s\n", validarCpf.imprimeCPF(cpf));
 		else
 			System.out.printf("Erro, CPF invalido !!!\n");
 
